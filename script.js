@@ -93,7 +93,7 @@ function desenharProdutos(produtos) {
         linha.appendChild(celulaDescricao);
 
         let celulaPreco = document.createElement("td");
-        let textoPreco = document.createTextNode(produto.preco.toFixed(2));
+        let textoPreco = document.createTextNode("R$" + produto.preco.toFixed(2));
         celulaPreco.appendChild(textoPreco);
         linha.appendChild(celulaPreco);
 
@@ -136,8 +136,12 @@ function desenharProdutos(produtos) {
 }
 
 function atualizarResumo(carrinho) {
+    
     let resumo = document.querySelector("#resumo");
     resumo.innerHTML = ""; // Limpa o conteúdo atual
+    let title = document.createElement("h2");
+    title.textContent = "Resumo da Compra";
+    resumo.appendChild(title);
     for (let i = 0; i < carrinho.itens.length; i++) {
         let item = carrinho.itens[i];
         let divItem = document.createElement("div");
@@ -145,7 +149,7 @@ function atualizarResumo(carrinho) {
         resumo.appendChild(divItem);
     }
     let total = document.createElement("div");
-    total.setAttribute("id", "resumo");
+    total.setAttribute("id", "total");
     total.textContent = "Total: R$ " + carrinho.getValorTotal().toFixed(2);
     resumo.appendChild(total);
 }
